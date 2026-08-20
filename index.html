@@ -360,12 +360,36 @@
     <h2>Onze realisaties</h2>
     <p class="sub">Rechtstreeks van onze Facebook-pagina — elke opruimklus die we posten, verschijnt hier automatisch.</p>
 
-    <div class="fb-page"
-      data-tabs="timeline"
-      data-href="https://www.facebook.com/p/Den-Opruimer-61556726409862/"
-      data-width="380"
-      data-hide-cover="false"
-      data-show-facepile="false">
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1795410101597191', // vervang door je eigen Facebook App ID
+          xfbml      : true,
+          version    : 'v19.0'
+        });
+      };
+    </script>
+    <script async defer crossorigin="anonymous"
+      src="https://connect.facebook.net/nl_NL/sdk.js">
+    </script>
+
+    <div class="fb-frame">
+      <div class="fb-page"
+        data-href="https://www.facebook.com/p/Den-Opruimer-61556726409862/"
+        data-tabs="timeline"
+        data-width="700"
+        data-height="700"
+        data-small-header="false"
+        data-adapt-container-width="true"
+        data-hide-cover="false"
+        data-show-facepile="true">
+        <div class="fb-fallback">
+          De Facebook-tijdlijn laadt hier zodra de pagina online staat.<br>
+          Bekijk ondertussen de pagina rechtstreeks op
+          <a href="https://www.facebook.com/p/Den-Opruimer-61556726409862/" target="_blank" rel="noopener">Facebook</a>.
+        </div>
+      </div>
     </div>
   </div>
 </section>
