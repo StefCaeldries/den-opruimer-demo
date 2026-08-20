@@ -196,11 +196,12 @@
   .realisaties h2{font-size:32px; margin-bottom:12px;}
   .realisaties p.sub{color:var(--slate); max-width:520px; margin-bottom:40px;}
   .fb-frame{
-    background:#fff;
-    border:1px solid var(--line);
-    padding:20px;
+    /* background:#fff;
+    border:1px solid var(--line); */
+    /* padding:20px; */
     display:flex;
-    justify-content:center;
+    /* justify-content:center; */
+    justify-content:left;
   }
   .fb-fallback{
     padding:60px 20px;
@@ -359,37 +360,25 @@
     <p class="eyebrow">Recent werk</p>
     <h2>Onze realisaties</h2>
     <p class="sub">Rechtstreeks van onze Facebook-pagina — elke opruimklus die we posten, verschijnt hier automatisch.</p>
-
-    <div id="fb-root"></div>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '1795410101597191', // vervang door je eigen Facebook App ID
-          xfbml      : true,
-          version    : 'v19.0'
-        });
-      };
-    </script>
-    <script async defer crossorigin="anonymous"
-      src="https://connect.facebook.net/nl_NL/sdk.js">
-    </script>
-
-    <div class="fb-frame">
-      <div class="fb-page"
-        data-href="https://www.facebook.com/p/Den-Opruimer-61556726409862/"
-        data-tabs="timeline"
-        data-width="700"
-        data-height="700"
-        data-small-header="false"
-        data-adapt-container-width="true"
-        data-hide-cover="false"
-        data-show-facepile="true">
-        <div class="fb-fallback">
-          De Facebook-tijdlijn laadt hier zodra de pagina online staat.<br>
-          Bekijk ondertussen de pagina rechtstreeks op
-          <a href="https://www.facebook.com/p/Den-Opruimer-61556726409862/" target="_blank" rel="noopener">Facebook</a>.
-        </div>
-      </div>
+  
+    <div class="fb-frame" data-width="1000" data-href="https://www.facebook.com/p/Den-Opruimer-61556726409862/"
+      data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"
+      data-tabs="timeline" fb-xfbml-state="rendered"
+      fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=&amp;container_width=766&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fp%2FDen-Opruimer-61556726409862%2F&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width=1000">
+      <span style="vertical-align: bottom; width: 500px; height: 500px;">
+        <iframe name="fbe5746043f0b9961" width="1000px" height="1000px" data-testid="fb:page Facebook Social Plugin"
+          title="fb:page Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true"
+          scrolling="no" allow="encrypted-media"
+          src="https://www.facebook.com/v21.0/plugins/page.php?adapt_container_width=true&amp;app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Dfe28dc371f7a86942%26domain%3Ddevelopers.facebook.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fdevelopers.facebook.com%252Ffbae8c7c7b17d5be9%26relation%3Dparent.parent&amp;container_width=766&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fp%2FDen-Opruimer-61556726409862%2F&amp;locale=nl_BE&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width=1000"
+          style="border-width: medium; border-style: none; border-color: currentcolor; border-image: none; visibility: visible; width: 500px; height: 500px;"
+          class="">
+        </iframe>
+      </span>
+      <!-- <div class="fb-fallback">
+        De Facebook-tijdlijn laadt hier zodra de pagina online staat.<br>
+        Bekijk ondertussen de pagina rechtstreeks op
+        <a href="https://www.facebook.com/p/Den-Opruimer-61556726409862/" target="_blank" rel="noopener">Facebook</a>.
+      </div> -->
     </div>
   </div>
 </section>
