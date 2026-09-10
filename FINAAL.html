@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Den Opruimer — Ruimte voor wat telt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F2EFE6;
+    --ink: #23271F;
+    --green: #2B3328;
+    --ochre: #C4832A;
+    --slate: #6B7268;
+    --line: #D8D2C2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  h1,h2,h3{
+    font-family:'Archivo Black', sans-serif;
+    font-weight:400;
+    letter-spacing:-0.01em;
+    color:var(--green);
+  }
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  #realisaties-wrap{display:flex;}
+
+  /* header */
+  header{
+    position:sticky; top:0; z-index:10;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Archivo Black', sans-serif;
+    font-size:19px;
+    letter-spacing:-0.02em;
+    text-decoration:none;
+    color:var(--green);
+  }
+  .logo img{height:44px; width:44px; object-fit:contain;}
+  .logo span{color:var(--ochre);}
+  nav a{
+    text-decoration:none;
+    font-size:14px;
+    color:var(--slate);
+    margin-left:28px;
+  }
+  nav a:hover{color:var(--green);}
+
+  .menu-toggle{display:none;}
+  .menu-btn{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    width:32px; height:32px;
+    cursor:pointer;
+  }
+  .menu-btn span{
+    display:block; height:2px; width:100%;
+    background:var(--green);
+  }
+
+  /* hero */
+  .hero{
+    padding:80px 0 90px;
+    /* border-bottom:1px solid var(--line); */
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(36px, 5vw, 64px);
+    line-height:0.98;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--ochre);
+  }
+  .hero p.lead{
+    max-width:480px;
+    margin-top:28px;
+    font-size:18px;
+    color:var(--slate);
+  }
+  .hero-image img{
+    width:100%;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    border-radius:2px;
+    border:1px solid var(--line);
+  }
+  .cta-row{
+    margin-top:36px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    padding:14px 26px;
+    font-size:14px;
+    font-weight:600;
+    text-decoration:none;
+    border-radius:2px;
+    transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--green); color:var(--bg);}
+  .btn-ghost{border:1px solid var(--green); color:var(--green);}
+
+  /* signature clearance line */
+  .clearance-line{
+    height:64px;
+    margin:0 0 -1px;
+    display:flex;
+    align-items:center;
+  }
+  .clearance-line svg{width:100%; height:100%; display:block;}
+
+  /* about strip */
+  .about{
+    padding:70px 0;
+    /* border-bottom:1px solid var(--line); */
+  }
+  .about .wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+  }
+  .about .eyebrow{
+    text-transform:uppercase;
+    font-size:12px;
+    letter-spacing:0.12em;
+    color:var(--ochre);
+    font-weight:600;
+    margin-bottom:14px;
+  }
+  .about h2{font-size:30px; margin-bottom:16px;}
+  .about p{color:var(--slate); font-size:16px; max-width:440px;}
+  .services{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .services li{
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-size:16px;
+  }
+  .services li:first-child{border-top:1px solid var(--line);}
+  .services li span.n{
+    font-family:'Archivo Black', sans-serif;
+    color:var(--line);
+    font-size:14px;
+  }
+
+  /* realisaties / facebook feed */
+  .realisaties{
+    padding:80px 0 90px;
+  }
+
+  .realisaties .eyebrow{
+    text-transform:uppercase;
+    font-size:12px;
+    letter-spacing:0.12em;
+    color:var(--ochre);
+    font-weight:600;
+    margin-bottom:14px;
+  }
+  .realisaties h2{font-size:32px; margin-bottom:12px;}
+  .realisaties p.sub{color:var(--slate); max-width:520px; margin-bottom:40px;}
+
+  /* contact */
+  .contact{
+    padding:70px 0 90px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:24px;
+  }
+  .contact h2{font-size:30px; max-width:420px;}
+  .contact-info{font-size:15px; color:var(--slate); text-align:right;}
+  .contact-info a{display:block; color:var(--green); font-weight:600; text-decoration:none; margin-top:6px;}
+
+  footer{
+    background:var(--green);
+    color:var(--bg);
+    padding:24px 0;
+    font-size:13px;
+  }
+  footer .wrap{display:flex; justify-content:space-between; color:#B9C0AF;}
+  .footer-brand{color:var(--bg); text-decoration:none; font-weight:600;}
+  .footer-brand:hover{color:var(--ochre);}
+
+  /* tablet / laptop */
+  @media (max-width:900px){
+    .hero{padding:64px 0 56px;}
+    .hero-grid{grid-template-columns:1fr; gap:32px;}
+    .hero-image{order:2;}
+    .hero-text{order:1;}
+    .about{gap:36px;}
+    .fb-frame{padding:14px;}
+    #realisaties-wrap{
+      flex-direction:column;
+    }
+  }
+
+  /* mobile */
+  @media (max-width:680px){
+    .wrap{padding:0 18px;}
+    header .wrap{padding:14px 18px;}
+
+    .menu-btn{display:flex;}
+    nav{
+      display:flex;
+      flex-direction:column;
+      position:absolute;
+      top:100%; left:0; right:0;
+      background:var(--bg);
+      border-bottom:1px solid var(--line);
+      padding:8px 18px 18px;
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .25s ease;
+    }
+    nav a{margin:0; padding:12px 0; border-bottom:1px solid var(--line); font-size:15px;}
+    nav a:last-child{border-bottom:none;} 
+    .menu-toggle:checked ~ nav{max-height:220px;}
+
+    .hero{padding:56px 0 44px;}
+    .hero h1{font-size:clamp(32px, 10vw, 44px);}
+    .hero p.lead{font-size:16px; max-width:100%;}
+    .cta-row{flex-direction:column;}
+    .btn{text-align:center; width:100%;}
+
+    .clearance-line{height:40px;}
+
+    .about{padding:48px 0;}
+    .about .wrap{grid-template-columns:1fr; gap:32px;}
+    .about h2{font-size:26px;}
+    .about p{max-width:100%;}
+
+    .realisaties{padding:56px 0 64px;}
+    .realisaties h2{font-size:26px;}
+    .realisaties p.sub{max-width:100%;}
+    .fb-frame{padding:10px;}
+    /* .fb-frame iframe{
+      border-width: medium;
+      border-style: none;
+      border-color: currentcolor;
+      border-image: none;
+      visibility:visible;
+      width: 100% !important;
+      height: 300px;
+    } */
+
+    /* facebook mobile section */
+
+    .fb-frame{
+      width:100%;
+      /* overflow:hidden; */
+      overflow-x: auto;
+      min-width:0;
+    }
+
+    .fb-frame iframe,
+    .fb-frame span,
+    .fb-frame > div,
+    .fb-page,
+    .fb-page iframe,
+    .fb-page span{
+      width:100% !important;
+      max-width:100% !important;
+    }
+
+    /* facebook mobile section */
+
+    .contact{padding:48px 0 64px; align-items:flex-start;}
+    .contact h2{font-size:24px;}
+    .contact-info{text-align:left;}
+
+    footer .wrap{flex-direction:column; gap:6px; text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#"><img src="assets/logo.jpg" alt="Den Opruimer">Den <span>Opruimer</span></a>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="menu-btn" aria-label="Menu openen">
+      <span></span><span></span><span></span>
+    </label>
+    <nav>
+      <a href="#over">Over ons</a>
+      <a href="#realisaties">Realisaties</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <h1>Ruimte voor <em>wat telt.</em></h1>
+      <p class="lead">Den Opruimer maakt komaf met wat je niet meer nodig hebt — snel, netjes en zonder gedoe. Ontruiming, opkuis en afvoer, geregeld door mensen die weten wat ze doen.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#contact">Vraag een offerte</a>
+        <a class="btn btn-ghost" href="#realisaties">Bekijk ons werk</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="assets/banner2.jpg" alt="Aanhangwagen van Den Opruimer bij zonsopgang">
+    </div>
+  </div>
+</section>
+
+<div class="clearance-line">
+  <svg viewBox="0 0 1080 64" preserveAspectRatio="none">
+    <line x1="0" y1="32" x2="1080" y2="32" stroke="#D8D2C2" stroke-width="1"/>
+    <line x1="0" y1="32" x2="1080" y2="32" stroke="#C4832A" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<section class="about" id="over">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Wie we zijn</p>
+      <h2>Opruimen is een vak.</h2>
+      <p>Van een volle zolder tot een volledige huisontruiming: Den Opruimer pakt het grondig aan. Wij sorteren, ruimen op en zorgen dat alles op de juiste plek terechtkomt — herbruikt, gerecycleerd of correct afgevoerd.</p>
+    </div>
+    <ul class="services">
+      <li><span>Huisontruiming</span><span class="n">01</span></li>
+      <li><span>Zolder- en kelderopkuis</span><span class="n">02</span></li>
+      <li><span>Afvoer grofvuil</span><span class="n">03</span></li>
+      <li><span>Opkuis na verhuis</span><span class="n">04</span></li>
+    </ul>
+  </div>
+</section>
+
+<div class="clearance-line">
+  <svg viewBox="0 0 1080 64" preserveAspectRatio="none">
+    <line x1="0" y1="32" x2="1080" y2="32" stroke="#D8D2C2" stroke-width="1"/>
+    <line x1="0" y1="32" x2="1080" y2="32" stroke="#C4832A" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<section class="realisaties" id="realisaties">
+  <div class="wrap" id="realisaties-wrap">
+    <div>
+      <p class="eyebrow">Recent werk</p>
+      <h2>Onze realisaties</h2>
+      <p class="sub">Rechtstreeks van onze Facebook-pagina — elke opruimklus die we posten, verschijnt hier automatisch.</p>
+    </div>
+    <div class="fb-frame" data-width="1000" data-href="https://www.facebook.com/p/Den-Opruimer-61556726409862/"
+      data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"
+      data-tabs="timeline" fb-xfbml-state="rendered"
+      fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=&amp;container_width=766&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fp%2FDen-Opruimer-61556726409862%2F&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width=1000">
+      <span style="vertical-align: bottom; width: 500px; height: 500px;">
+        <iframe name="fbe5746043f0b9961" width="1000px" height="1000px" data-testid="fb:page Facebook Social Plugin"
+          title="fb:page Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true"
+          scrolling="no" allow="encrypted-media"
+          src="https://www.facebook.com/v21.0/plugins/page.php?adapt_container_width=true&amp;app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Dfe28dc371f7a86942%26domain%3Ddevelopers.facebook.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fdevelopers.facebook.com%252Ffbae8c7c7b17d5be9%26relation%3Dparent.parent&amp;container_width=766&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2Fp%2FDen-Opruimer-61556726409862%2F&amp;locale=nl_BE&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width=1000"
+          style="border-width: medium; border-style: none; border-color: currentcolor; border-image: none; visibility: visible; width: 500px; height: 500px;"
+          class="">
+        </iframe>
+      </span>
+    </div>
+  </div>
+</section>
+
+<div class="clearance-line">
+  <svg viewBox="0 0 1080 64" preserveAspectRatio="none">
+    <line x1="0" y1="32" x2="1080" y2="32" stroke="#D8D2C2" stroke-width="1"/>
+    <line x1="0" y1="32" x2="1080" y2="32" stroke="#C4832A" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<section class="contact" id="contact">
+  <div class="wrap" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; width:100%;">
+    <h2>Klaar om op te ruimen?</h2>
+    <div class="contact-info">
+      Leander Van De Walle — bel of mail voor een vrijblijvende offerte.
+      <a href="tel:+32474584417">+32 474/58 44 17</a>
+      <a href="mailto:vandewalle.leander@outlook.com">vandewalle.leander@outlook.com</a>
+      <a href="https://www.facebook.com/p/Den-Opruimer-61556726409862/" target="_blank" rel="noopener">facebook.com/denopruimer</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="#" class="footer-brand">Den Opruimer</a>
+    <span id="copywright">&copy; 2026</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('menu-toggle');
+    if (!toggle) return;
+
+    function closeMenu() { toggle.checked = false; }
+
+    document.querySelectorAll('nav a, .logo').forEach(function (el) {
+      el.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!toggle.checked) return;
+      var header = document.querySelector('header');
+      if (header && !header.contains(e.target)) closeMenu();
+    });
+
+    window.addEventListener('scroll', function () {
+      if (toggle.checked) closeMenu();
+    }, { passive: true });
+
+    /* copywright year */
+    function age(id) {
+      var d1 = 1;
+      var m1 = 1;
+      var y1 = 0;
+
+      var date = new Date();
+      var d2 = date.getDate();
+      var m2 = 1 + date.getMonth();
+      var y2 = date.getFullYear();
+      var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+      if (d1 > d2) {
+        d2 = d2 + month[m2 - 1];
+        m2 = m2 - 1;
+      }
+      if (m1 > m2) {
+        m2 = m2 + 12;
+        y2 = y2 - 1;
+      }
+      var d = d2 - d1;
+      var m = m2 - m1;
+      var y = y2 - y1;
+
+      document.getElementById(id).innerText = "\u00A9 " + " " + y;
+    }
+
+    window.onload = function () {
+      age('copywright');
+    }
+  })();
+</script>
+</body>
+</html>
